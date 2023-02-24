@@ -25,7 +25,7 @@ const ChatMessage = ({ text, from }: MessageProps) => {
   return (
     <>
       {from == Creator.Me && (
-        <div className="bg-gray-200 m-2 p-4 rounded-lg flex gap-4 items-center whitespace-pre-wrap self-end">
+        <div className="bg-white p-4 rounded-lg flex gap-4 items-center whitespace-pre-wrap self-end">
           <p className="text-gray-700">{text}</p>
           <Image src={userPic} alt="User" width={40} />
         </div>
@@ -116,8 +116,10 @@ export default function Home() {
   const callApi = async (input: string) => {
     setLoading(true);
 
+    const capitalizedInput = input.charAt(0).toUpperCase() + input.slice(1);
+
     const myMessage: MessageProps = {
-      text: input,
+      text: capitalizedInput,
       from: Creator.Me,
       key: new Date().getTime(),
     };
@@ -148,10 +150,10 @@ export default function Home() {
 
   return (
     <main className="relative max-w-2xl mx-auto flex flex-col-reverse justify-end h-screen">
-      <div className="sticky bottom-6 w-full pt-10 px-4">
+      <div className="sticky bottom-6 w-full pt-5 px-4">
         <ChatInput onSend={(input) => callApi(input)} disabled={loading} />
       </div>
-      <div className="mb-5 mt-2 px4 flex flex-col-reverse flex-grow">
+      <div className="mb-5 mt-2 px-4 flex flex-col-reverse flex-grow">
         {messages.map((msg: MessageProps) => (
           <ChatMessage key={msg.key} text={msg.text} from={msg.from} />
         ))}
