@@ -156,7 +156,7 @@ export default function Home() {
           <ChatMessage key={msg.key} text={msg.text} from={msg.from} />
         ))}
         {messages.length == 0 && (
-          <p className="text-center text-gray-400">Hola, Amigo creyente!</p>
+          <p className="text-center text-gray-400">Hola, Amigo creyente!!</p>
         )}
       </div>
     </main>
